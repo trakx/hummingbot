@@ -120,6 +120,24 @@ global_config_map = {
                   required_if=using_exchange("binance"),
                   is_secure=True,
                   is_connect_key=True),
+    "openware_api_key":
+        ConfigVar(key="openware_api_key",
+                  prompt="Enter your openware API key >>> ",
+                  required_if=using_exchange("openware"),
+                  is_secure=True),
+    "openware_api_secret":
+        ConfigVar(key="openware_api_secret",
+                  prompt="Enter your openware API secret >>> ",
+                  required_if=using_exchange("openware"),
+                  is_secure=True),
+    "openware_api_url":
+        ConfigVar(key="openware_api_url",
+                  prompt="Enter your openware API url (PEATIO) >>> ",
+                  required_if=using_exchange("openware")),
+    "openware_ranger_url":
+        ConfigVar(key="openware_api_url",
+                  prompt="Enter your openware RANGER url >>> ",
+                  required_if=using_exchange("openware")),
     "coinbase_pro_api_key":
         ConfigVar(key="coinbase_pro_api_key",
                   prompt="Enter your Coinbase API key >>> ",

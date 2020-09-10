@@ -25,6 +25,7 @@ from hummingbot.market.radar_relay.radar_relay_market import RadarRelayMarket
 from hummingbot.market.bamboo_relay.bamboo_relay_market import BambooRelayMarket
 from hummingbot.market.dolomite.dolomite_market import DolomiteMarket
 from hummingbot.market.kraken.kraken_market import KrakenMarket
+from hummingbot.market.openware.openware_market import OpenwareMarket
 from hummingbot.model.sql_connection_manager import SQLConnectionManager
 
 from hummingbot.wallet.ethereum.ethereum_chain import EthereumChain
@@ -61,7 +62,8 @@ MARKET_CLASSES = {
     "bittrex": BittrexMarket,
     "kucoin": KucoinMarket,
     "eterbase": EterbaseMarket,
-    "kraken": KrakenMarket
+    "kraken": KrakenMarket,
+    "openware": OpenwareMarket
 }
 
 
@@ -291,6 +293,20 @@ class HummingbotApplication(*commands):
                                            coinbase_pro_passphrase,
                                            trading_pairs=trading_pairs,
                                            trading_required=self._trading_required)
+            elif market_name == "openware":
+                openware_api_key = global_config_map.get("openware_api_key").value
+                openware_api_secret = global_config_map.get("openware_api_secret").value
+                openware_api_url = global_config_map.get("openware_api_url").value
+                openware_ranger_url = global_config_map.get("openware_ranger_url").value
+                market = OpenwareMarket(
+                    openware_api_key,
+                    openware_api_secret,
+                    openware_api_url,
+                    openware_ranger_url,
+                    order_book_tracker_data_source_type=OrderBookTrackerDataSourceType.EXCHANGE_API,
+                    trading_pairs=trading_pairs,
+                    trading_required=self._trading_required,
+                )
             elif market_name == "huobi":
                 huobi_api_key = global_config_map.get("huobi_api_key").value
                 huobi_secret_key = global_config_map.get("huobi_secret_key").value

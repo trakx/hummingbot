@@ -36,6 +36,7 @@ def main():
         "hummingbot.market",
         "hummingbot.market.bamboo_relay",
         "hummingbot.market.binance",
+        "hummingbot.market.openware",
         "hummingbot.market.bittrex",
         "hummingbot.market.coinbase_pro",
         "hummingbot.market.huobi",
